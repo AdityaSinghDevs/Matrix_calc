@@ -1,0 +1,12 @@
+{
+  "name": "matrix-calculator-web",
+  "version": "1.0.0",
+  "description": "Web interface for matrix calculator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+} 
