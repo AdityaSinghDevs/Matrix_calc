@@ -4,67 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matrix Calculator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
-<body class="bg-gray-100 min-h-screen p-8">
-    <div class="max-w-6xl mx-auto">
-        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Matrix Calculator</h1>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="glitch">MATRIX<span>_</span>CALCULATOR</h1>
+            <p>Cybernetic Linear Algebra System v1.0</p>
+        </header>
         
         <!-- Matrix Creation Form -->
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Create New Matrix</h2>
-            <div class="space-y-4">
-                <div class="flex gap-4">
-                    <input type="text" id="matrix-name" placeholder="Matrix Name" class="w-1/4 p-2 border rounded">
-                    <input type="number" id="matrix-rows" placeholder="Rows" class="w-1/4 p-2 border rounded" min="1">
-                    <input type="number" id="matrix-cols" placeholder="Columns" class="w-1/4 p-2 border rounded" min="1">
-                    <button onclick="createMatrixInputs()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        Create Matrix
+        <section class="card">
+            <h2>Create Matrix</h2>
+            <div class="input-grid">
+                <div class="input-group">
+                    <input type="text" id="matrix-name" placeholder="Matrix Name" class="cybr-input">
+                </div>
+                <div class="input-group">
+                    <input type="number" id="matrix-rows" placeholder="Rows" class="cybr-input" min="1">
+                </div>
+                <div class="input-group">
+                    <input type="number" id="matrix-cols" placeholder="Columns" class="cybr-input" min="1">
+                </div>
+                <div class="input-group">
+                    <button onclick="createMatrixInputs()" class="cybr-btn">
+                        Generate
                     </button>
                 </div>
-                <div id="matrix-inputs" class="grid gap-2"></div>
-                <button id="save-matrix" onclick="saveMatrix()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hidden">
-                    Save Matrix
-                </button>
             </div>
-        </div>
+            <div id="matrix-inputs" class="matrix-grid"></div>
+            <button id="save-matrix" onclick="saveMatrix()" class="cybr-btn hidden">
+                Save Matrix
+            </button>
+        </section>
 
         <!-- Stored Matrices -->
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Stored Matrices</h2>
-            <div id="stored-matrices" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <section class="card">
+            <h2>Stored Matrices</h2>
+            <div id="stored-matrices" class="stored-matrices">
                 <!-- Matrices will be displayed here -->
             </div>
-        </div>
+        </section>
 
         <!-- Matrix Operations -->
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Matrix Operations</h2>
-            <div class="space-y-4">
-                <div class="flex gap-4">
-                    <select id="matrix1-select" class="w-1/4 p-2 border rounded">
+        <section class="card">
+            <h2>Matrix Operations</h2>
+            <div class="input-grid">
+                <div class="input-group">
+                    <select id="matrix1-select" class="cybr-select">
                         <option value="">Select First Matrix</option>
                     </select>
-                    <select id="operation-select" class="w-1/4 p-2 border rounded">
-                        <option value="add">Add</option>
-                        <option value="multiply">Multiply</option>
+                </div>
+                <div class="input-group">
+                    <select id="operation-select" class="cybr-select">
+                        <option value="add">Addition</option>
+                        <option value="multiply">Multiplication</option>
                     </select>
-                    <select id="matrix2-select" class="w-1/4 p-2 border rounded">
+                </div>
+                <div class="input-group">
+                    <select id="matrix2-select" class="cybr-select">
                         <option value="">Select Second Matrix</option>
                     </select>
-                    <button onclick="performOperation()" class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
+                </div>
+                <div class="input-group">
+                    <button onclick="performOperation()" class="cybr-btn">
                         Calculate
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Result -->
-        <div id="result" class="bg-white rounded-lg shadow-lg p-6 hidden">
-            <h2 class="text-xl font-semibold mb-4">Result</h2>
-            <div id="result-matrix" class="grid gap-2"></div>
-        </div>
+        <section id="result" class="card result hidden">
+            <h2>Computation Result</h2>
+            <div id="result-matrix" class="matrix-display"></div>
+        </section>
+    </div>
+    
+    <!-- Team Members -->
+    <div class="team-members">
+        <span>Arjun</span>, <span>Vibhu</span>, <span>Shivansh</span>, <span>Hiya</span>, <span>Parina</span>, <span>Ruhaan</span>
     </div>
 </body>
 </html> 

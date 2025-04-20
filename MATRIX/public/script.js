@@ -23,26 +23,25 @@ function updateStoredMatrices(matrices) {
     container.innerHTML = '';
     
     if (!matrices || matrices.length === 0) {
-        container.innerHTML = '<div class="text-gray-500">No matrices stored yet</div>';
+        container.innerHTML = '<div class="empty-message">No matrices stored yet</div>';
         return;
     }
     
     matrices.forEach(matrix => {
         const matrixDiv = document.createElement('div');
-        matrixDiv.className = 'bg-gray-50 p-4 rounded-lg';
+        matrixDiv.className = 'matrix-item';
         
         const header = document.createElement('h3');
-        header.className = 'font-semibold mb-2';
-        header.textContent = matrix.name;
+        header.textContent = `${matrix.name} (${matrix.rows}×${matrix.cols})`;
         
         const grid = document.createElement('div');
-        grid.className = 'grid gap-1';
+        grid.className = 'matrix-display';
         grid.style.gridTemplateColumns = `repeat(${matrix.cols}, 1fr)`;
         
         matrix.data.forEach(row => {
             row.forEach(value => {
                 const cell = document.createElement('div');
-                cell.className = 'p-2 text-center bg-white border rounded text-sm';
+                cell.className = 'matrix-cell';
                 cell.textContent = value.toFixed(2);
                 grid.appendChild(cell);
             });
@@ -100,8 +99,8 @@ function createMatrixInputs() {
         for (let j = 0; j < cols; j++) {
             const input = document.createElement('input');
             input.type = 'number';
-            input.className = 'w-full p-2 border rounded text-center';
-            input.placeholder = `${i+1},${j+1}`;
+            input.className = 'matrix-input';
+            input.placeholder = `(${i+1},${j+1})`;
             input.dataset.row = i;
             input.dataset.col = j;
             container.appendChild(input);
@@ -149,6 +148,19 @@ async function saveMatrix() {
         document.getElementById('matrix-inputs').innerHTML = '';
         document.getElementById('save-matrix').classList.add('hidden');
         currentMatrix = null;
+        
+        // Show success message
+        const container = document.getElementById('matrix-inputs');
+        const message = document.createElement('div');
+        message.className = 'success-message';
+        message.textContent = `Matrix "${data.name}" saved successfully`;
+        container.appendChild(message);
+        
+        setTimeout(() => {
+            if (container.contains(message)) {
+                container.removeChild(message);
+            }
+        }, 3000);
         
         // Reload matrices
         await loadStoredMatrices();
@@ -233,12 +245,15 @@ function displayResult(result) {
         for (const row of gridData) {
             for (const cell of row) {
                 const div = document.createElement('div');
-                div.className = 'p-2 border rounded text-center bg-white';
+                div.className = 'matrix-cell';
                 div.textContent = cell.toFixed(2);
                 resultMatrix.appendChild(div);
             }
         }
+        
+        // Scroll to result
+        resultDiv.scrollIntoView({ behavior: 'smooth' });
     } else {
-        resultMatrix.innerHTML = '<div class="text-red-500">No valid result data</div>';
+        resultMatrix.innerHTML = '<div class="error-message">No valid result data</div>';
     }
 } 
