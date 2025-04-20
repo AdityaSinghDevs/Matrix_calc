@@ -35,11 +35,11 @@ Follow these steps to get the Matrix Calculator up and running on your local mac
    ```
 3. Clone the repository by running:
    ```bash
-   git clone https://github.com/YourUsername/matrix-calculator.git
+   git clone https://github.com/AdityaSinghDevs/Matrix_calc.git
    ```
 4. Navigate into the project folder:
    ```bash
-   cd matrix-calculator
+   cd MATRIX
    ```
 
 ### Step 2: Install Dependencies
